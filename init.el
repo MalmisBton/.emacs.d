@@ -19,7 +19,7 @@
  '(elfeed-feeds '("https://planet.emacslife.com/atom.xml"))
  '(initial-frame-alist '((fullscreen . maximized)))
  '(package-selected-packages
-   '(smooth-scrolling elfeed hydra org-bullets ace-window company speed-type multi-term csharp-mode avy counsel ivy swiper jedi yasnippet-snippets yasnippet free-keys autotetris-mode 2048-game w3m groovy-mode evil))
+   '(csv-mode smooth-scrolling elfeed hydra org-bullets ace-window company speed-type multi-term csharp-mode avy counsel ivy swiper jedi yasnippet-snippets yasnippet free-keys autotetris-mode 2048-game w3m groovy-mode evil))
  '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -194,9 +194,22 @@
   (forward-line -1)
   (indent-according-to-mode))
 
+;(progn
+  ;; define a prefix keymap
+;  (define-prefix-command 'my-keymap)
+;  (define-key my-keymap (kbd "c") 'initel)
+;  (define-key my-keymap (kbd "<f7>") 'whitespace-mode)
+;  (define-key my-keymap (kbd "<f8>") 'toggle-frame-fullscreen)
+;  )
+
+;(global-set-key (kbd "<esc>") my-keymap)
+
+;; now, 【F9 F6】 will call visual-line-mode
+
 (defun emacsd()
 (interactive)
 (find-file "~/.emacs.d/"))
+
 
 (defun initel()
 (interactive)
