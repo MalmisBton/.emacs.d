@@ -2,8 +2,19 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
   (package-initialize)
 
-  (require 'use-package)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+; then define packages you use
+;(use-package ace-jump-mode
+;  :bind ("M-SPC" . ace-jump-mode))
+;etc
+
+(use-package evil)
   (require 'evil)
   (evil-mode 1)
 (custom-set-variables
@@ -20,6 +31,7 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(package-selected-packages
    '(csv-mode smooth-scrolling elfeed hydra org-bullets ace-window company speed-type multi-term csharp-mode avy counsel ivy swiper jedi yasnippet-snippets yasnippet free-keys autotetris-mode 2048-game w3m groovy-mode evil))
+ (use-package which-key)
  '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -128,8 +140,11 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
-(load "~/.emacs.d/my-alias.el")
-(load "~/.emacs.d/localsettings.el")
+(cond ((file-exists-p "~/.emacs.d/my-alias.el")
+       (load "~/.emacs.d/my-alias.el")))
+
+(cond ((file-exists-p "~/.emacs.d/localsettings.el")
+       (load "~/.emacs.d/localsettings.el")))
 
 ;;(setq initial-buffer-choice "~/.emacs.d/init.el")
 ;; Frame has the same title as file name
