@@ -14,9 +14,14 @@
 ;  :bind ("M-SPC" . ace-jump-mode))
 ;etc
 
-(use-package evil)
-  (require 'evil)
+(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+(setq evil-want-keybinding nil)
+(require 'evil)
+(when (require 'evil-collection nil t)
+  (evil-collection-init))
   (evil-mode 1)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -31,7 +36,7 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(nil nil t)
  '(package-selected-packages
-   '(flycheck csv-mode smooth-scrolling elfeed hydra org-bullets ace-window company speed-type multi-term csharp-mode avy counsel ivy swiper jedi yasnippet-snippets yasnippet free-keys autotetris-mode 2048-game w3m groovy-mode evil))
+   '(evil-collection evil-numbers evil-surround evil-easymotion evil-args flycheck csv-mode smooth-scrolling elfeed hydra org-bullets ace-window company speed-type multi-term csharp-mode avy counsel ivy swiper jedi yasnippet-snippets yasnippet free-keys autotetris-mode 2048-game w3m groovy-mode evil))
  '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -45,6 +50,39 @@
  ;(define-key evil-normal-state-map (kbd "l") 'evil-previous-line)
  ;(define-key evil-normal-state-map (kbd "k") 'evil-next-line)
  ;(define-key evil-normal-state-map (kbd "j") 'evil-backward-char)
+
+
+(require 'evil-numbers)
+
+(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
+(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
+
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
+;; locate and load the package
+(add-to-list 'load-path "path/to/evil-args")
+(require 'evil-args)
+
+;; bind evil-args text objects
+(define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+(define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+
+;; bind evil-forward/backward-args
+(define-key evil-normal-state-map "L" 'evil-forward-arg)
+(define-key evil-normal-state-map "H" 'evil-backward-arg)
+(define-key evil-motion-state-map "L" 'evil-forward-arg)
+(define-key evil-motion-state-map "H" 'evil-backward-arg)
+
+;; bind evil-jump-out-args
+(define-key evil-normal-state-map "K" 'evil-jump-out-args)
+
+
+;;Evil easymotion
+(evilem-default-keybindings "SPC")
+
 
 (global-flycheck-mode)
 
@@ -155,7 +193,6 @@
 
 ;; Disable lock files
 (setq create-lockfiles nil)
-
 
 ;; W3M
  (setq browse-url-browser-function 'w3m-browse-url)
