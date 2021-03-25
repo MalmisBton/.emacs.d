@@ -14,6 +14,8 @@
 ;  :bind ("M-SPC" . ace-jump-mode))
 ;etc
 
+(setq auto-save-mode 0)
+
 (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 (setq evil-want-keybinding nil)
 (require 'evil)
@@ -141,7 +143,12 @@
 (which-key-mode)
 (org-bullets-mode)
 (add-hook 'after-init-hook 'global-company-mode)
+
+
+;; COMPANY MODE
+
 (setq company-idle-delay 0)
+(setq company-dabbrev-downcase nil)
 ;(setq-local completion-ignore-case f)
 ;(company-dabbrev-code-ignore-case f)
 ;(company-dabbrev-ignore-case f)
