@@ -142,6 +142,7 @@
 (org-bullets-mode)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0)
+(setq company-dabbrev-downcase nil)
 ;(setq-local completion-ignore-case f)
 ;(company-dabbrev-code-ignore-case f)
 ;(company-dabbrev-ignore-case f)
@@ -178,6 +179,12 @@
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+(defun my-swiper-isearch-again ()
+  "Start swiper-isearch with the last thing searched for."
+  (interactive)
+  (swiper-isearch (car swiper-history)))
+(global-set-key (kbd "s-d") 'my-swiper-isearch-again)
 
 (cond ((file-exists-p "~/.emacs.d/my-alias.el")
        (load "~/.emacs.d/my-alias.el")))
