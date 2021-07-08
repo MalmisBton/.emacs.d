@@ -38,7 +38,7 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(nil nil t)
  '(package-selected-packages
-   '(evil-collection evil-numbers evil-surround evil-easymotion evil-args flycheck csv-mode smooth-scrolling elfeed hydra org-bullets ace-window company speed-type multi-term csharp-mode avy counsel ivy swiper jedi yasnippet-snippets yasnippet free-keys autotetris-mode 2048-game w3m groovy-mode evil))
+   '(json-navigator evil-collection evil-numbers evil-surround evil-easymotion evil-args flycheck csv-mode smooth-scrolling elfeed hydra org-bullets ace-window company speed-type multi-term csharp-mode avy counsel ivy swiper jedi yasnippet-snippets yasnippet free-keys autotetris-mode 2048-game w3m groovy-mode evil))
  '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
